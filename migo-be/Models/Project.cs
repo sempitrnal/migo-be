@@ -13,7 +13,7 @@ namespace Alliance_API.Models
 
         public string Deadline { get; set; } = string.Empty;
 
-        public List<Employee> AssignedEmployees { get; set; }
+        public List<Employee>? AssignedEmployees { get; set; }
     }
 }
 

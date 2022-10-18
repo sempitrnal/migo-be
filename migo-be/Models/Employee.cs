@@ -59,7 +59,7 @@ namespace Alliance_API.Models
 
         public string EmergencyRelationship { get; set; } = string.Empty;
   
-        public List<Project> AssignedProjects { get; set; }
+        public List<Project>? AssignedProjects { get; set; }
     }
 }
 
