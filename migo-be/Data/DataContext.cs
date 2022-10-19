@@ -1,6 +1,7 @@
 ﻿using System;
 using Alliance_API.Models;
 using Microsoft.EntityFrameworkCore;
+using migo_be.Models;
 
 namespace Alliance_API.Data
 {
@@ -15,6 +16,8 @@ namespace Alliance_API.Data
         public DbSet<Project>  Projects => Set<Project>();
 
         public DbSet<HRUser> HRUsers => Set<HRUser>();
+
+        public DbSet<EmployeeTimeLogs> EmployeeTimeLogs => Set<EmployeeTimeLogs>();
     }
 }
 

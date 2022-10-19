@@ -3,6 +3,7 @@ using System;
 using Alliance_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Alliance_API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20221019084022_EmployeeTimeLogTable")]
+    partial class EmployeeTimeLogTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.10");
@@ -195,9 +197,6 @@ namespace Alliance_API.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Remark")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -205,9 +204,12 @@ namespace Alliance_API.Migrations
                     b.Property<DateTime>("Time")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("employeeId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("EmployeeId");
+                    b.HasIndex("employeeId");
 
                     b.ToTable("EmployeeTimeLogs");
                 });
@@ -229,13 +231,13 @@ namespace Alliance_API.Migrations
 
             modelBuilder.Entity("migo_be.Models.EmployeeTimeLogs", b =>
                 {
-                    b.HasOne("Alliance_API.Models.Employee", "Employee")
+                    b.HasOne("Alliance_API.Models.Employee", "employee")
                         .WithMany("EmployeeTimeLogs")
-                        .HasForeignKey("EmployeeId")
+                        .HasForeignKey("employeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Employee");
+                    b.Navigation("employee");
                 });
 
             modelBuilder.Entity("Alliance_API.Models.Employee", b =>

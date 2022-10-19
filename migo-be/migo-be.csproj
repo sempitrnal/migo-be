@@ -10,6 +10,8 @@
   <ItemGroup>
     <Compile Remove="Controllers\HRUserController.cs" />
     <Compile Remove="Controllers\ValuesController.cs" />
+    <Compile Remove="Models\Class.cs" />
+    <Compile Remove="Models\EmployeeTimeLogDtop.cs" />
   </ItemGroup>
 
   <ItemGroup>

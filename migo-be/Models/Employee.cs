@@ -1,4 +1,5 @@
-﻿using System;
+﻿using migo_be.Models;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
@@ -60,6 +61,7 @@ namespace Alliance_API.Models
         public string EmergencyRelationship { get; set; } = string.Empty;
   
         public List<Project>? AssignedProjects { get; set; }
+        public List<EmployeeTimeLogs>? EmployeeTimeLogs { get; set; }
     }
 }
 
