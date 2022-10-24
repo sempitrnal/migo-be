@@ -18,6 +18,8 @@ namespace Alliance_API.Data
         public DbSet<HRUser> HRUsers => Set<HRUser>();
 
         public DbSet<EmployeeTimeLogs> EmployeeTimeLogs => Set<EmployeeTimeLogs>();
+
+        public DbSet<Benefits> Benefits => Set<Benefits>();
     }
 }
 
