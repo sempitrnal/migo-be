@@ -62,6 +62,8 @@ namespace Alliance_API.Models
 
         public string EmergencyRelationship { get; set; } = string.Empty;
 
+        public Boolean Status { get; set; } = true;
+
         public string ImageName { get; set; } = string.Empty;
         
         [NotMapped]
