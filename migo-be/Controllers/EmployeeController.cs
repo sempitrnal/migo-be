@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection.Metadata.Ecma335;
 using Alliance_API.Data;
 using Alliance_API.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -11,10 +12,11 @@ namespace Alliance_API.Controllers
     public class EmployeeController : ControllerBase
     {
         private readonly DataContext _context;
-
-        public EmployeeController(DataContext context)
+        private readonly IWebHostEnvironment _hostEnvironment;
+        public EmployeeController(DataContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
+            this._hostEnvironment = hostEnvironment;
         }
 
 
@@ -43,6 +45,7 @@ namespace Alliance_API.Controllers
         [HttpPost]
         public async Task<ActionResult<List<Employee>>> AddEmployee(Employee emp)
         {
+            emp.ImageName = await SaveImage(emp.ImageFile);
             _context.Employees.Add(emp);
             await _context.SaveChangesAsync();
 
@@ -93,6 +96,19 @@ namespace Alliance_API.Controllers
         private bool EmployeeExists(int id)
         {
             return _context.Employees.Any(e => e.Id == id);
+        }
+        [NonAction]
+        public async Task<string> SaveImage(IFormFile imageFile)
+        {
+            string imageName = new String(Path.GetFileNameWithoutExtension(imageFile.FileName).Take(10).ToArray()).Replace(' ', '-');
+            imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(imageFile.FileName);
+            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "Images", imageName);
+            using (var fileStream = new FileStream(imagePath, FileMode.Create))
+            {
+                await imageFile.CopyToAsync(fileStream);
+            }
+
+            return imageName;
         }
     }
 }

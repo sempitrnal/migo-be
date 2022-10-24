@@ -1,6 +1,8 @@
-﻿using migo_be.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using migo_be.Models;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace Alliance_API.Models
@@ -59,7 +61,11 @@ namespace Alliance_API.Models
         public string EmergencyContactNumber { get; set; } = string.Empty;
 
         public string EmergencyRelationship { get; set; } = string.Empty;
-  
+
+        public string ImageName { get; set; } = string.Empty;
+        
+        [NotMapped]
+        public IFormFile? ImageFile { get; set; } 
         public List<Project>? AssignedProjects { get; set; }
         public List<EmployeeTimeLogs>? EmployeeTimeLogs { get; set; }
     }
