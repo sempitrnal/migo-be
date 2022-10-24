@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Sean Saligue\\Documents\\GitHub\\migo-be\\migo-be\\migo-be.csproj": {}
+    "D:\\React Projects\\_newprojects\\migo-be\\migo-be\\migo-be.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Sean Saligue\\Documents\\GitHub\\migo-be\\migo-be\\migo-be.csproj": {
+    "D:\\React Projects\\_newprojects\\migo-be\\migo-be\\migo-be.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Sean Saligue\\Documents\\GitHub\\migo-be\\migo-be\\migo-be.csproj",
+        "projectUniqueName": "D:\\React Projects\\_newprojects\\migo-be\\migo-be\\migo-be.csproj",
         "projectName": "migo-be",
-        "projectPath": "C:\\Users\\Sean Saligue\\Documents\\GitHub\\migo-be\\migo-be\\migo-be.csproj",
-        "packagesPath": "C:\\Users\\Sean Saligue\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Sean Saligue\\Documents\\GitHub\\migo-be\\migo-be\\obj\\",
+        "projectPath": "D:\\React Projects\\_newprojects\\migo-be\\migo-be\\migo-be.csproj",
+        "packagesPath": "C:\\Users\\Gemarlo Aquillo\\.nuget\\packages\\",
+        "outputPath": "D:\\React Projects\\_newprojects\\migo-be\\migo-be\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Sean Saligue\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Gemarlo Aquillo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
