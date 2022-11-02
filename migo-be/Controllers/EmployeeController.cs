@@ -25,7 +25,42 @@ namespace Alliance_API.Controllers
         {
             var employees = await _context.Employees
                 .Include(c => c.AssignedProjects)
-                .Include(c=>c.EmployeeTimeLogs)
+                .Include(c => c.EmployeeTimeLogs)
+                 .Select(x => new Employee()
+                 {
+                     Id = x.Id,
+                     FirstName = x.FirstName,
+                     MiddleName = x.MiddleName,
+                     LastName = x.LastName,
+                     CityAddress = x.CityAddress,
+                     CityContactNumber = x.CityContactNumber,
+                     NumberOfDependents = x.NumberOfDependents,
+                     CivicClubAffiliation = x.CivicClubAffiliation,
+                     Religion = x.Religion,
+                     Age = x.Age,
+                     Sex = x.Sex,
+                     CivilStatus = x.CivilStatus,
+                     Birthdate = x.Birthdate,
+                     Profession = x.Profession,
+                     ContactNumber = x.ContactNumber,
+                     EmailAddress = x.EmailAddress,
+                     YearsOfExperience = x.YearsOfExperience,
+                     ContractType = x.ContractType,
+                     PositionApplied = x.PositionApplied,
+                     PositionCode = x.PositionCode,
+                     DateJoined = x.DateJoined,
+                     EmergencyAddress = x.EmergencyAddress,
+                     EmergencyContactNumber = x.EmergencyContactNumber,
+                     EmergencyName = x.EmergencyName,
+                     EmergencyRelationship = x.EmergencyRelationship,
+                     Status = x.Status,
+                     ImageName = x.ImageName,
+                     AssignedProjects = x.AssignedProjects,
+                     EmployeeTimeLogs = x.EmployeeTimeLogs,
+                     BloodType = x.BloodType,
+                     ImageFile = x.ImageFile,
+                     ImageSrc = String.Format("{0}://{1}{2}/Images/Employees/{3}", Request.Scheme, Request.Host, Request.PathBase, x.ImageName)
+                 })
                 .ToListAsync();
 
             return employees;
@@ -43,10 +78,10 @@ namespace Alliance_API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<List<Employee>>> AddEmployee(Employee emp, IFormFile file)
+        public async Task<ActionResult<List<Employee>>> AddEmployee([FromForm] Employee emp)
         {
             Console.WriteLine(emp.ImageFile);
-            emp.ImageName = await SaveImage(emp.ImageFile);
+            emp.ImageName = await SaveImage(emp.ImageFile, emp.FirstName, emp.LastName);
             _context.Employees.Add(emp);
             await _context.SaveChangesAsync();
 
@@ -54,13 +89,17 @@ namespace Alliance_API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutEmployee(int id, Employee emp)
+        public async Task<IActionResult> PutEmployee(int id, [FromForm] Employee emp)
         {
             if (id != emp.Id)
             {
                 return BadRequest();
             }
-            emp.ImageName = await SaveImage(emp.ImageFile);
+            if (emp.ImageFile != null)
+            {
+                DeleteImage(emp.ImageName);
+                emp.ImageName = await SaveImage(emp.ImageFile, emp.FirstName, emp.LastName);
+            }
             _context.Employees.Update(emp);
             await _context.SaveChangesAsync();
             _context.Entry(emp).State = EntityState.Modified;
@@ -100,10 +139,10 @@ namespace Alliance_API.Controllers
             return _context.Employees.Any(e => e.Id == id);
         }
         [NonAction]
-        public async Task<string> SaveImage(IFormFile imageFile)
+        public async Task<string> SaveImage(IFormFile imageFile, string fn, string ln)
         {
             string imageName = new string(Path.GetFileNameWithoutExtension(imageFile.FileName).Take(10).ToArray()).Replace(' ', '-');
-            imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(imageFile.FileName);
+            imageName = fn+ln + "-"+ DateTime.Now.ToString("yymmssfff") + Path.GetExtension(imageFile.FileName);
             var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "Images/Employees", imageName);
             using (var fileStream = new FileStream(imagePath, FileMode.Create))
             {
@@ -111,6 +150,14 @@ namespace Alliance_API.Controllers
             }
             Console.WriteLine(imageName);
             return imageName;
+        }
+
+        [NonAction]
+        public void DeleteImage(string imageName)
+        {
+            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "Images/Employees", imageName);
+            if (System.IO.File.Exists(imagePath))
+                System.IO.File.Delete(imagePath);
         }
     }
 }
