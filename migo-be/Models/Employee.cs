@@ -67,7 +67,10 @@ namespace Alliance_API.Models
         public string ImageName { get; set; } = string.Empty;
         
         [NotMapped]
-        public IFormFile? ImageFile { get; set; } 
+        public IFormFile? ImageFile { get; set; }
+        [NotMapped]
+        public string ImageSrc { get; set; } = string.Empty;
+
         public List<Project>? AssignedProjects { get; set; }
         public List<EmployeeTimeLogs>? EmployeeTimeLogs { get; set; }
     }

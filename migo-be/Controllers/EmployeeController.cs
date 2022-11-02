@@ -16,7 +16,7 @@ namespace Alliance_API.Controllers
         public EmployeeController(DataContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
-            this._hostEnvironment = hostEnvironment;
+            _hostEnvironment = hostEnvironment;
         }
 
 
@@ -43,8 +43,9 @@ namespace Alliance_API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<List<Employee>>> AddEmployee(Employee emp)
+        public async Task<ActionResult<List<Employee>>> AddEmployee(Employee emp, IFormFile file)
         {
+            Console.WriteLine(emp.ImageFile);
             emp.ImageName = await SaveImage(emp.ImageFile);
             _context.Employees.Add(emp);
             await _context.SaveChangesAsync();
@@ -59,6 +60,7 @@ namespace Alliance_API.Controllers
             {
                 return BadRequest();
             }
+            emp.ImageName = await SaveImage(emp.ImageFile);
             _context.Employees.Update(emp);
             await _context.SaveChangesAsync();
             _context.Entry(emp).State = EntityState.Modified;
@@ -100,14 +102,14 @@ namespace Alliance_API.Controllers
         [NonAction]
         public async Task<string> SaveImage(IFormFile imageFile)
         {
-            string imageName = new String(Path.GetFileNameWithoutExtension(imageFile.FileName).Take(10).ToArray()).Replace(' ', '-');
+            string imageName = new string(Path.GetFileNameWithoutExtension(imageFile.FileName).Take(10).ToArray()).Replace(' ', '-');
             imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(imageFile.FileName);
-            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "Images", imageName);
+            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "Images/Employees", imageName);
             using (var fileStream = new FileStream(imagePath, FileMode.Create))
             {
                 await imageFile.CopyToAsync(fileStream);
             }
-
+            Console.WriteLine(imageName);
             return imageName;
         }
     }
