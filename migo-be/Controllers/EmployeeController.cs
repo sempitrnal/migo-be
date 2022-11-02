@@ -26,6 +26,41 @@ namespace Alliance_API.Controllers
             var employees = await _context.Employees
                 .Include(c => c.AssignedProjects)
                 .Include(c=>c.EmployeeTimeLogs)
+               .Select(x=> new Employee()
+               {
+                   Id= x.Id,
+                   FirstName = x.FirstName,
+                   MiddleName = x.MiddleName,
+                   LastName = x.LastName,
+                   CityAddress = x.CityAddress,
+                   CityContactNumber = x.CityContactNumber,
+                   NumberOfDependents = x.NumberOfDependents,
+                   CivicClubAffiliation = x.CivicClubAffiliation,
+                   Religion = x.Religion,
+                   Age=x.Age,
+                   Sex= x.Sex,
+                   CivilStatus = x.CivilStatus,
+                   Birthdate=x.Birthdate,
+                   Profession =x.Profession,
+                   ContactNumber = x.ContactNumber,
+                   EmailAddress= x.EmailAddress,
+                   YearsOfExperience=x.YearsOfExperience,
+                   ContractType = x.ContractType,
+                   PositionApplied= x.PositionApplied,
+                   PositionCode = x.PositionCode,
+                   DateJoined= x.DateJoined,
+                   EmergencyAddress= x.EmergencyAddress,
+                   EmergencyContactNumber= x.EmergencyContactNumber,
+                   EmergencyName = x.EmergencyName,
+                   EmergencyRelationship= x.EmergencyRelationship,
+                   Status = x.Status,
+                   ImageName = x.ImageName,
+                   AssignedProjects = x.AssignedProjects,
+                   EmployeeTimeLogs = x.EmployeeTimeLogs,
+                   BloodType = x.BloodType,
+                   ImageFile = x.ImageFile,
+                   ImageSrc = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.ImageName)
+               })
                 .ToListAsync();
 
             return employees;
@@ -43,9 +78,11 @@ namespace Alliance_API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<List<Employee>>> AddEmployee(Employee emp)
+        public async Task<ActionResult<List<Employee>>> AddEmployee([FromForm]Employee emp)
         {
-            emp.ImageName = await SaveImage(emp.ImageFile);
+           
+                emp.ImageName = await SaveImage(emp.ImageFile);
+            
             _context.Employees.Add(emp);
             await _context.SaveChangesAsync();
 

@@ -3,6 +3,7 @@ using System;
 using Alliance_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Alliance_API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20221102071011_Test")]
+    partial class Test
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.10");
@@ -53,105 +55,85 @@ namespace Alliance_API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Age")
+                    b.Property<int?>("Age")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Birthdate")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("BloodType")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CityAddress")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CityContactNumber")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CivicClubAffiliation")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CivilStatus")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ContactNumber")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ContractType")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("DateJoined")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("EmailAddress")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("EmergencyAddress")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("EmergencyContactNumber")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("EmergencyName")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("EmergencyRelationship")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ImageName")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("MiddleName")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("NumberOfDependents")
+                    b.Property<int?>("NumberOfDependents")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("PositionApplied")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PositionCode")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Profession")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Religion")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Sex")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("Status")
+                    b.Property<bool?>("Status")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("YearsOfExperience")
+                    b.Property<int?>("YearsOfExperience")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");

@@ -32,9 +32,10 @@
     <None Remove="Microsoft.EntityFrameworkCore.Design" />
     <None Remove="Microsoft.EntityFrameworkCore.Sqlite" />
     <None Remove="Microsoft.AspNetCore.Mvc.NewtonsoftJson" />
+    <None Remove="Images\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Images\EmployeeImages\" />
+    <Folder Include="Images\" />
   </ItemGroup>
 </Project>
