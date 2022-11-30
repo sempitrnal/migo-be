@@ -63,6 +63,8 @@ namespace Alliance_API.Models
         public string? EmergencyRelationship { get; set; } = string.Empty;
 
         public Boolean? Status { get; set; } = true;
+        public Boolean? Evaluated { get; set; } = true;
+        public string? DateEvaluated { get; set; } = string.Empty;
 
         public string? ImageName { get; set; } = string.Empty;
         

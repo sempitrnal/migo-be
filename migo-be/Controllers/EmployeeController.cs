@@ -54,6 +54,8 @@ namespace Alliance_API.Controllers
                      EmergencyName = x.EmergencyName,
                      EmergencyRelationship = x.EmergencyRelationship,
                      Status = x.Status,
+                     Evaluated = x.Evaluated,
+                     DateEvaluated = x.DateEvaluated,
                      ImageName = x.ImageName,
                      AssignedProjects = x.AssignedProjects,
                      EmployeeTimeLogs = x.EmployeeTimeLogs,
