@@ -35,10 +35,12 @@
     <None Remove="Microsoft.AspNetCore.Mvc.NewtonsoftJson" />
     <None Remove="Images\" />
     <None Remove="Images\Employees\" />
+    <None Remove="AssessmentTypes\" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Images\" />
     <Folder Include="Images\Employees\" />
+    <Folder Include="AssessmentTypes\" />
   </ItemGroup>
 </Project>

@@ -77,6 +77,7 @@ namespace Alliance_API.Models
     
         public List<Project>? AssignedProjects { get; set; }
         public List<EmployeeTimeLogs>? EmployeeTimeLogs { get; set; }
+        public List<Assessment>? Assessments { get; set; }
     }
 }
 
