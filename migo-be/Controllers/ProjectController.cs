@@ -3,6 +3,7 @@ using Alliance_API.Data;
 using Alliance_API.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using migo_be.Models;
 
 namespace Alliance_API.Controllers
 {
@@ -26,8 +27,15 @@ namespace Alliance_API.Controllers
             return projects;
         }
         [HttpPost]
-        public async Task<ActionResult<List<Project>>> AddProject(Project project)
+        public async Task<ActionResult<List<Project>>> AddProject(ProjectDto request)
         {
+     
+
+            Project project = new Project();
+            project.Name = request.Name;
+            project.ClientName = request.ClientName;
+            project.Deadline = request.Deadline;
+            project.Description = request.Description;
             _context.Projects.Add(project);
             await _context.SaveChangesAsync();
 
@@ -62,18 +70,7 @@ namespace Alliance_API.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Project>> DeleteEmployeeTimeLog(int id)
-        {
-            var proj = await _context.Projects.FindAsync(id);
-            if (proj == null)
-            {
-                return BadRequest("Employee Time Log not found");
-            }
-            _context.Projects.Remove(proj);
-            await _context.SaveChangesAsync();
-            return Ok(await _context.Projects.ToListAsync());
-        }
+
 
         private bool ProjectExists(int id)
         {

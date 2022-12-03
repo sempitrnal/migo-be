@@ -4,6 +4,7 @@ using Alliance_API.Data;
 using Alliance_API.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using migo_be.Models;
 
 namespace Alliance_API.Controllers
 {
@@ -69,6 +70,27 @@ namespace Alliance_API.Controllers
 
             return employees;
         }
+
+        [HttpPost("project")]
+        public async Task<ActionResult<List<Project>>> AddEmployeeProject(AddEmployeeProjectDto request)
+        {
+            var employee = await _context.Employees.Where(c=>c.Id == request.EmployeeId)
+                .Include(c=>c.AssignedProjects)
+                .FirstOrDefaultAsync();
+            if (employee == null)
+                return NotFound();
+
+            var project = await _context.Projects.FindAsync(request.ProjectId);
+            if (employee == null)
+                return NotFound();
+
+            employee.AssignedProjects.Add(project);
+
+            await _context.SaveChangesAsync();
+
+            return Ok(await _context.Employees.ToListAsync());
+        }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<Employee>> GetEmployee(int id)
         {
