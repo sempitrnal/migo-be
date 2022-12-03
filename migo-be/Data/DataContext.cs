@@ -23,6 +23,13 @@ namespace Alliance_API.Data
         public DbSet<Benefits> Benefits => Set<Benefits>();
 
         public DbSet<Assessment> Assessments => Set<Assessment>();
+        public DbSet<Innovation> Innovations => Set<Innovation>();
+        public DbSet<Agility> Agilities => Set<Agility>();
+        public DbSet<Efficiency> Efficiencies => Set<Efficiency>();
+        public DbSet<Integrity> Integrities => Set<Integrity>();
+
+        public DbSet<FunctionalComponents> FunctionalComponents => Set<FunctionalComponents>();
+        public DbSet<Performance> Performances => Set<Performance>();
     }
 }
 

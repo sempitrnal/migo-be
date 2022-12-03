@@ -36,6 +36,8 @@
     <None Remove="Images\" />
     <None Remove="Images\Employees\" />
     <None Remove="AssessmentTypes\" />
+    <None Remove="sqlite.db-wal" />
+    <None Remove="sqlite.db-shm" />
   </ItemGroup>
 
   <ItemGroup>

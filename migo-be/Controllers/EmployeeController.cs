@@ -26,7 +26,8 @@ namespace Alliance_API.Controllers
             var employees = await _context.Employees
                 .Include(c => c.AssignedProjects)
                 .Include(c => c.EmployeeTimeLogs)
-                .Include(c=>c.Assessments)
+                .Include(c => c.Assessments)
+                
                  .Select(x => new Employee()
                  {
                      Id = x.Id,

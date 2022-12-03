@@ -1,14 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
-namespace migo_be.AssessmentTypes
+namespace migo_be.Models
 {
-   
-    public class Quality
+    public class Innovation
     {
         [Key]
         public int Id { get; set; }
-
 
         public double CA_Q1 { get; set; }
         public double CA_Q2 { get; set; }
@@ -18,3 +16,4 @@ namespace migo_be.AssessmentTypes
 
     }
 }
+

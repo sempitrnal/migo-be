@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace migo_be.AssessmentTypes
+namespace migo_be.Models
 {
     public class FunctionalComponents
     {

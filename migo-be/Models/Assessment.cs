@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using Alliance_API.Models;
-using migo_be.AssessmentTypes;
+
 
 namespace migo_be.Models
 {
@@ -13,10 +13,13 @@ namespace migo_be.Models
         [Key]
         public int Id { get; set; }
 
-        [JsonIgnore]
-        public Employee Employee { get; set; }
+  
+        public Employee? Employee { get; set; }
+        public int EmployeeId { get; set; }
 
         public Quality Quality { get; set; }
+
+
         public Innovation Innovation { get; set; }
         public Agility Agility { get; set; }
         public Efficiency Efficiency { get; set; }
