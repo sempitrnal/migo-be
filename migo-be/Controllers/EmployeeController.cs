@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using migo_be.Models;
 using migo_be.Dto;
+using Migo_be;
+
 namespace Alliance_API.Controllers
 {
     [ApiController]
@@ -102,21 +104,28 @@ namespace Alliance_API.Controllers
             if (employee == null)
                 return NotFound();
 
-            employee.Trainings.Add(training);
+            employee.Trainings?.Add(training);
 
             await _context.SaveChangesAsync();
+            var sampleData = new __ViewStart.ModelInput()
+            {
+                Score = 1.7F,
+                Column3 = @"",
+            };
 
+            //Load model and predict output
+            var result = __ViewStart.Predict(sampleData);
+            Console.WriteLine(result.PredictedLabel);
             return Ok(await _context.Employees.ToListAsync());
         }
         [HttpGet("{id}")]
         public async Task<ActionResult<Employee>> GetEmployee(int id)
-        {
+        {   
             var emp = await _context.Employees.FindAsync(id);
             if (emp == null)
             {
                 return BadRequest("Employee not found");
             }
-
             return Ok(emp);
         }
 

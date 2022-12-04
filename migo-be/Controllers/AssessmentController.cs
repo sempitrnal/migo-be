@@ -58,7 +58,7 @@ namespace migo_be.Controllers
             assessment.Integrity = request.Integrity;
             assessment.FunctionalComponents = request.FunctionalComponents;
             assessment.Performance = request.Performance;
-         
+            
             _context.Assessments.Add(assessment);
             await _context.SaveChangesAsync();
 

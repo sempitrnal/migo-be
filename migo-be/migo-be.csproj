@@ -1,22 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>migo_be</RootNamespace>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Remove="Controllers\HRUserController.cs" />
     <Compile Remove="Controllers\ValuesController.cs" />
     <Compile Remove="Models\Class.cs" />
     <Compile Remove="Models\EmployeeTimeLogDtop.cs" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.25.0" />
+    <PackageReference Include="Microsoft.ML" Version="2.0.0" />
+    <PackageReference Include="Microsoft.ML.FastTree" Version="1.7.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.10">
@@ -27,7 +26,6 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.10" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.25.0" />
   </ItemGroup>
-
   <ItemGroup>
     <None Remove="Microsoft.EntityFrameworkCore" />
     <None Remove="Microsoft.EntityFrameworkCore.Design" />
@@ -42,11 +40,34 @@
     <None Remove="sqlite.db-wal" />
     <None Remove="sqlite.db-shm" />
   </ItemGroup>
-
   <ItemGroup>
     <Folder Include="Images\" />
     <Folder Include="Images\Employees\" />
     <Folder Include="AssessmentTypes\" />
     <Folder Include="Dto\" />
+  </ItemGroup>
+  <ItemGroup Label="MLModel">
+    <None Include="MLModel.consumption.cs">
+      <DependentUpon>MLModel.mbconfig</DependentUpon>
+    </None>
+    <None Include="MLModel.training.cs">
+      <DependentUpon>MLModel.mbconfig</DependentUpon>
+    </None>
+    <None Include="MLModel.zip">
+      <DependentUpon>MLModel.mbconfig</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup Label="_ViewStart">
+    <None Include="_ViewStart.consumption.cs">
+      <DependentUpon>_ViewStart.mbconfig</DependentUpon>
+    </None>
+    <None Include="_ViewStart.training.cs">
+      <DependentUpon>_ViewStart.mbconfig</DependentUpon>
+    </None>
+    <None Include="_ViewStart.zip">
+      <DependentUpon>_ViewStart.mbconfig</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
