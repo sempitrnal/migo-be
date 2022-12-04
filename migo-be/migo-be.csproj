@@ -38,11 +38,15 @@
     <None Remove="AssessmentTypes\" />
     <None Remove="sqlite.db-wal" />
     <None Remove="sqlite.db-shm" />
+    <None Remove="Dto\" />
+    <None Remove="sqlite.db-wal" />
+    <None Remove="sqlite.db-shm" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Images\" />
     <Folder Include="Images\Employees\" />
     <Folder Include="AssessmentTypes\" />
+    <Folder Include="Dto\" />
   </ItemGroup>
 </Project>

@@ -21,7 +21,7 @@ namespace Alliance_API.Data
         public DbSet<EmployeeTimeLogs> EmployeeTimeLogs => Set<EmployeeTimeLogs>();
 
         public DbSet<Benefits> Benefits => Set<Benefits>();
-
+        
         public DbSet<Assessment> Assessments => Set<Assessment>();
         public DbSet<Innovation> Innovations => Set<Innovation>();
         public DbSet<Agility> Agilities => Set<Agility>();
@@ -30,6 +30,9 @@ namespace Alliance_API.Data
 
         public DbSet<FunctionalComponents> FunctionalComponents => Set<FunctionalComponents>();
         public DbSet<Performance> Performances => Set<Performance>();
+
+        public DbSet<Training> Trainings => Set<Training>();
+        
     }
 }
 

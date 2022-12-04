@@ -3,6 +3,7 @@ using System;
 using Alliance_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Alliance_API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20221204073913_TrainingModel")]
+    partial class TrainingModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.10");
@@ -208,21 +210,6 @@ namespace Alliance_API.Migrations
                     b.HasIndex("AssignedProjectsId");
 
                     b.ToTable("EmployeeProject");
-                });
-
-            modelBuilder.Entity("EmployeeTraining", b =>
-                {
-                    b.Property<int>("EmployeesId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("TrainingsId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("EmployeesId", "TrainingsId");
-
-                    b.HasIndex("TrainingsId");
-
-                    b.ToTable("EmployeeTraining");
                 });
 
             modelBuilder.Entity("migo_be.Models.Agility", b =>
@@ -452,32 +439,6 @@ namespace Alliance_API.Migrations
                     b.ToTable("Quality");
                 });
 
-            modelBuilder.Entity("migo_be.Models.Training", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Aspects")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Url")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Trainings");
-                });
-
             modelBuilder.Entity("EmployeeProject", b =>
                 {
                     b.HasOne("Alliance_API.Models.Employee", null)
@@ -489,21 +450,6 @@ namespace Alliance_API.Migrations
                     b.HasOne("Alliance_API.Models.Project", null)
                         .WithMany()
                         .HasForeignKey("AssignedProjectsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("EmployeeTraining", b =>
-                {
-                    b.HasOne("Alliance_API.Models.Employee", null)
-                        .WithMany()
-                        .HasForeignKey("EmployeesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("migo_be.Models.Training", null)
-                        .WithMany()
-                        .HasForeignKey("TrainingsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

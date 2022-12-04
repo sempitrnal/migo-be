@@ -5,7 +5,7 @@ using Alliance_API.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using migo_be.Models;
-
+using migo_be.Dto;
 namespace Alliance_API.Controllers
 {
     [ApiController]
@@ -25,10 +25,7 @@ namespace Alliance_API.Controllers
         public async Task<ActionResult<List<Employee>>> GetEmployees()
         {
             var employees = await _context.Employees
-                .Include(c => c.AssignedProjects)
-                .Include(c => c.EmployeeTimeLogs)
-                .Include(c => c.Assessments)
-                
+    
                  .Select(x => new Employee()
                  {
                      Id = x.Id,
@@ -62,6 +59,8 @@ namespace Alliance_API.Controllers
                      ImageName = x.ImageName,
                      AssignedProjects = x.AssignedProjects,
                      EmployeeTimeLogs = x.EmployeeTimeLogs,
+                     Assessments = x.Assessments,
+                     Trainings = x.Trainings,
                      BloodType = x.BloodType,
                      ImageFile = x.ImageFile,
                      ImageSrc = String.Format("{0}://{1}{2}/Images/Employees/{3}", Request.Scheme, Request.Host, Request.PathBase, x.ImageName)
@@ -90,7 +89,25 @@ namespace Alliance_API.Controllers
 
             return Ok(await _context.Employees.ToListAsync());
         }
+        [HttpPost("training")]
+        public async Task<ActionResult<List<Project>>> AddEmployeeTraining(AddEmployeeTrainingDto request)
+        {
+            var employee = await _context.Employees.Where(c => c.Id == request.EmployeeId)
+                .Include(c => c.AssignedProjects)
+                .FirstOrDefaultAsync();
+            if (employee == null)
+                return NotFound();
 
+            var training = await _context.Trainings.FindAsync(request.TrainingId);
+            if (employee == null)
+                return NotFound();
+
+            employee.Trainings.Add(training);
+
+            await _context.SaveChangesAsync();
+
+            return Ok(await _context.Employees.ToListAsync());
+        }
         [HttpGet("{id}")]
         public async Task<ActionResult<Employee>> GetEmployee(int id)
         {
