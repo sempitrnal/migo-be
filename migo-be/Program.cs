@@ -34,7 +34,15 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+//Load sample data
+var sampleData = new MLModel.ModelInput()
+{
+    Score = 1.7F,
+};
 
+//Load model and predict output
+var result = MLModel.Predict(sampleData);
+Console.Write(result.PredictedLabel.ToString());
 
 app.UseStaticFiles(new StaticFileOptions
 {

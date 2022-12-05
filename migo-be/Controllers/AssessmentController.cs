@@ -7,6 +7,7 @@ using Alliance_API.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using migo_be.Models;
+using Migo_be;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -48,6 +49,70 @@ namespace migo_be.Controllers
             var employee = await _context.Employees.FindAsync(empId);
             if (employee == null)
                 return BadRequest("Employee not found");
+            //Load sample data
+            var quality = new MLModel.ModelInput()
+            {
+                Score = (float) (request.Quality.CA_Q1 + request.Quality.CA_Q2)/2,
+            };
+
+            //Load model and predict output
+            var qualityResult = MLModel.Predict(quality);
+
+            var innovation = new MLModel.ModelInput()
+            {
+                Score = (float)(request.Innovation.CA_Q1+ request.Innovation.CA_Q2) / 2,
+            };
+
+            //Load model and predict output
+            var innovationResult = MLModel.Predict(innovation);
+
+            var agility = new MLModel.ModelInput()
+            {
+                Score = (float)(request.Agility.CA_Q1 + request.Agility.CA_Q2 + request.Agility.CA_Q3) / 3,
+            };
+
+            //Load model and predict output
+            var agilityResult = MLModel.Predict(innovation);
+
+            var efficiency = new MLModel.ModelInput()
+            {
+                Score = (float)(request.Efficiency.CA_Q1+ request.Efficiency.CA_Q2+ request.Efficiency.CA_Q3) / 3,
+            };
+
+            //Load model and predict output
+            var efficiencyResult = MLModel.Predict(efficiency);
+
+            var integrity = new MLModel.ModelInput()
+            {
+                Score = (float)(request.Integrity.CA_Q1 + request.Integrity.CA_Q2 + request.Integrity.CA_Q3 + request.Integrity.CA_Q4) / 4,
+            };
+
+            //Load model and predict output
+            var integrityResult = MLModel.Predict(integrity);
+
+            var functionalComponents = new MLModel.ModelInput()
+            {
+                Score = (float)(request.FunctionalComponents.FC_PE_Q1 + request.FunctionalComponents.FC_EC_Q1 + request.FunctionalComponents.FC_TP_Q1 + request.FunctionalComponents.FC_KS_Q1 + request.FunctionalComponents.FC_LTS_Q1) / 5,
+            };
+
+            //Load model and predict output
+            var functionalComponentsResult = MLModel.Predict(functionalComponents);
+
+            var performance = new MLModel.ModelInput()
+            {
+                Score = (float)(request.Performance.P_D_Q1 + request.Performance.P_C_Q1 + request.Performance.P_E_Q1 + request.Performance.P_A_Q1 + request.Performance.P_B_Q1) / 5,
+            };
+            //Load model and predict output
+            var performanceResult = MLModel.Predict(performance);
+
+            Console.WriteLine("--------------------------------------------------------------");
+            Console.WriteLine(qualityResult.PredictedLabel.ToString() + "\n");
+            Console.WriteLine(innovationResult.PredictedLabel.ToString() + "\n");
+            Console.WriteLine(agilityResult.PredictedLabel.ToString() + "\n");
+            Console.WriteLine(efficiencyResult.PredictedLabel.ToString() + "\n");
+            Console.WriteLine(integrityResult.PredictedLabel.ToString() + "\n");
+            Console.WriteLine(functionalComponentsResult.PredictedLabel.ToString() + "\n");
+            Console.WriteLine(performanceResult.PredictedLabel.ToString() + "\n");
 
             Assessment assessment = new Assessment();
             assessment.Employee = employee;
@@ -58,13 +123,15 @@ namespace migo_be.Controllers
             assessment.Integrity = request.Integrity;
             assessment.FunctionalComponents = request.FunctionalComponents;
             assessment.Performance = request.Performance;
-            assessment.AgilityRemark = request.AgilityRemark;
-            assessment.EfficiencyRemark = request.EfficiencyRemark;
-            assessment.FunctionalComponentsRemark = request.FunctionalComponentsRemark;
-            assessment.InnovationRemark = request.InnovationRemark;
-            assessment.IntegrityRemark = request.IntegrityRemark;
-            assessment.PerformanceRemark = request.PerformanceRemark;
-            assessment.QualityRemark = request.QualityRemark;
+            //Remarks
+            assessment.AgilityRemark = agilityResult.PredictedLabel.ToString();
+            assessment.EfficiencyRemark = efficiencyResult.PredictedLabel.ToString();
+            assessment.FunctionalComponentsRemark = functionalComponentsResult.PredictedLabel.ToString();
+            assessment.InnovationRemark = innovationResult.PredictedLabel.ToString();
+            assessment.IntegrityRemark = integrityResult.PredictedLabel.ToString();
+            assessment.PerformanceRemark = performanceResult.PredictedLabel.ToString();
+            assessment.QualityRemark = qualityResult.PredictedLabel.ToString();
+
             _context.Assessments.Add(assessment);
             await _context.SaveChangesAsync();
 
