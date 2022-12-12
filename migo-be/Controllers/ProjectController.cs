@@ -43,6 +43,7 @@ namespace Alliance_API.Controllers
         }
 
         [HttpPut("{id}")]
+
         public async Task<IActionResult> PutEmployeeTimeLogs(int id, Project project)
         {
             if (id != project.Id)

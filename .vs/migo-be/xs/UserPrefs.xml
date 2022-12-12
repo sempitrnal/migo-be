@@ -1,4 +1,37 @@
-﻿<Properties StartupConfiguration="{CA6CBCE7-2FDA-40BB-8518-BDC314B7AF26}|Default">
+﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{CA6CBCE7-2FDA-40BB-8518-BDC314B7AF26}|Default">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints />
+  <MonoDevelop.Ide.Workbench ActiveDocument="migo-be/Controllers/ProjectController.cs">
+    <Files>
+      <File FileName="migo-be/Dto/AssessmentDto.cs" Line="36" Column="23" />
+      <File FileName="migo-be/Controllers/EmployeeTimeLogController.cs" Line="1" Column="1" />
+      <File FileName="migo-be/Controllers/ProjectController.cs" Line="46" Column="1" />
+      <File FileName="migo-be/Controllers/AuthController.cs" Line="83" Column="53" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="migo-be" expanded="True">
+            <Node name="migo-be" expanded="True">
+              <Node name="Dependencies" expanded="True">
+                <Node name="FrameworkReferences" expanded="True" />
+              </Node>
+              <Node name="AssessmentTypes" selected="True" />
+              <Node name="Controllers" expanded="True" />
+              <Node name="Data" expanded="True" />
+              <Node name="Dto" expanded="True" />
+              <Node name="Images" expanded="True" />
+              <Node name="Models" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.migo-be FirstBuild="True" />
+  <MonoDevelop.Ide.ItemProperties.migo-be PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>
