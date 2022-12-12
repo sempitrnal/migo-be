@@ -12,7 +12,7 @@ namespace Alliance_API.Models
         [Key]
         public int Id { get; set; }
 
-        public string? FirstName { get; set; } = string.Empty;
+        public string FirstName { get; set; } = string.Empty;
 
         public string? MiddleName { get; set; } = string.Empty;
 
