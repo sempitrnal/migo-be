@@ -39,12 +39,18 @@
     <None Remove="Dto\" />
     <None Remove="sqlite.db-wal" />
     <None Remove="sqlite.db-shm" />
+    <None Remove="Images\Projects\" />
+    <None Remove="Images\Benefits\" />
+    <None Remove="Images\Trainings\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
     <Folder Include="Images\Employees\" />
     <Folder Include="AssessmentTypes\" />
     <Folder Include="Dto\" />
+    <Folder Include="Images\Projects\" />
+    <Folder Include="Images\Benefits\" />
+    <Folder Include="Images\Trainings\" />
   </ItemGroup>
   <ItemGroup Label="MLModel">
     <None Include="MLModel.consumption.cs">

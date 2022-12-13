@@ -16,6 +16,7 @@ namespace Alliance_API.Controllers
     {
         private readonly DataContext _context;
         private readonly IWebHostEnvironment _hostEnvironment;
+
         public EmployeeController(DataContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
@@ -190,6 +191,7 @@ namespace Alliance_API.Controllers
         {
             return _context.Employees.Any(e => e.Id == id);
         }
+
         [NonAction]
         public async Task<string> SaveImage(IFormFile imageFile, string fn, string ln)
         {

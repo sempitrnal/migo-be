@@ -29,7 +29,6 @@ namespace migo_be.Models
         public String? EfficiencyRemark { get; set; }
         public Integrity Integrity { get; set; }
         public String? IntegrityRemark { get; set; }
-
         public FunctionalComponents FunctionalComponents { get; set; }
         public String? FunctionalComponentsRemark { get; set; }
         public Performance Performance { get; set; }

@@ -17,10 +17,11 @@ namespace migo_be.Controllers
     public class TrainingController : Controller
     {
         private readonly DataContext _context;
-
-        public TrainingController(DataContext context)
+        private readonly IWebHostEnvironment _hostEnvironment;
+        public TrainingController(DataContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
+            _hostEnvironment = hostEnvironment;
         }
 
         // GET: api/values
@@ -28,48 +29,52 @@ namespace migo_be.Controllers
         public async Task<ActionResult<List<Training>>> GetTrainings()
         {
             var trainings = await _context.Trainings
-                .Include(e => e.Employees)
+                .Select(x=> new Training()
+                {
+                    Id=x.Id,
+                    Aspects=x.Aspects,
+                    Category=x.Category,
+                    Employees = x.Employees,
+                    Name=x.Name,
+                    Url=x.Url,
+                    ImageFile=x.ImageFile,
+                    ImageName=x.ImageName,
+                    ImageSrc = String.Format("{0}://{1}{2}/Images/Trainings/{3}", Request.Scheme, Request.Host, Request.PathBase, x.ImageName)
+                })
                 .ToListAsync();
             return trainings;
         }
         [HttpPost]
-        public async Task<ActionResult<List<Training>>> AddTraining(TrainingDto request)
+        public async Task<ActionResult<List<Training>>> AddTraining(Training training)
         {
 
-            Training training = new Training();
-            training.Name = request.Name;
-            training.Url = request.Url;
-            training.Category = request.Category;
-            training.Aspects = request.Aspects;
+            training.ImageName = await SaveImage(training.ImageFile, training.ImageSrc);
             _context.Trainings.Add(training);
             await _context.SaveChangesAsync();
 
             return Ok(await _context.Employees.ToListAsync());
         }
-        //// GET api/values/5
-        //[HttpGet("{id}")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
+        [NonAction]
+        public async Task<string> SaveImage(IFormFile imageFile, string name)
+        {
+            string imageName = new string(Path.GetFileNameWithoutExtension(imageFile.FileName).Take(10).ToArray()).Replace(' ', '-');
+            imageName = name + "-" + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(imageFile.FileName);
+            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "Images/Trainings", imageName);
+            using (var fileStream = new FileStream(imagePath, FileMode.Create))
+            {
+                await imageFile.CopyToAsync(fileStream);
+            }
+            Console.WriteLine(imageName);
+            return imageName;
+        }
 
-        //// POST api/values
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //}
-
-        //// PUT api/values/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
-
-        //// DELETE api/values/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
+        [NonAction]
+        public void DeleteImage(string imageName)
+        {
+            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "Images/Trainings", imageName);
+            if (System.IO.File.Exists(imagePath))
+                System.IO.File.Delete(imagePath);
+        }
     }
 }
 
