@@ -33,6 +33,7 @@ namespace migo_be.Models
         public Performance? Performance { get; set; }
         public String? PerformanceRemark { get; set; }
         public String? TrainingAssessment { get; set; }
+        public Boolean? HasTraining { get; set; }
 
     }
 }
