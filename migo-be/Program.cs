@@ -49,6 +49,21 @@ app.UseStaticFiles(new StaticFileOptions
     FileProvider = new PhysicalFileProvider(Path.Combine(app.Environment.ContentRootPath, "Images/Employees")),
     RequestPath = "/Images/Employees"
 });
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(app.Environment.ContentRootPath, "Images/Projects")),
+    RequestPath = "/Images/Projects"
+});
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(app.Environment.ContentRootPath, "Images/Benefits")),
+    RequestPath = "/Images/Benefits"
+});
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(app.Environment.ContentRootPath, "Images/Trainings")),
+    RequestPath = "/Images/Trainings"
+});
 app.UseCors("corspolicy");
 
 app.UseAuthorization();

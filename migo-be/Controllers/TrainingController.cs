@@ -45,7 +45,7 @@ namespace migo_be.Controllers
             return trainings;
         }
         [HttpPost]
-        public async Task<ActionResult<List<Training>>> AddTraining(Training training)
+        public async Task<ActionResult<List<Training>>> AddTraining([FromForm]Training training)
         {
 
             training.ImageName = await SaveImage(training.ImageFile, training.ImageSrc);

@@ -27,7 +27,7 @@ namespace Alliance_API.Controllers
                 {
                     Id = x.Id,
                     Name = x.Name,
-                    AssignedEmployees = x.AssignedEmployees,
+                    AssignedEmployees=x.AssignedEmployees,
                     ClientName= x.ClientName,
                     Deadline = x.Deadline,
                     Description=x.Description,
@@ -43,13 +43,14 @@ namespace Alliance_API.Controllers
         [HttpPost]
         public async Task<ActionResult<List<Project>>> AddProject([FromForm] Project project)
         {
+            Console.WriteLine(project.ImageFile);
 
             project.ImageName = await SaveImage(project.ImageFile, project.Name);
-       
+            
             _context.Projects.Add(project);
             await _context.SaveChangesAsync();
 
-            return Ok(await _context.Employees.ToListAsync());
+            return Ok(await _context.Projects.ToListAsync());
         }
 
         [HttpPut("{id}")]
@@ -95,6 +96,7 @@ namespace Alliance_API.Controllers
         [NonAction]
         public async Task<string> SaveImage(IFormFile imageFile, string name)
         {
+            
             string imageName = new string(Path.GetFileNameWithoutExtension(imageFile.FileName).Take(10).ToArray()).Replace(' ', '-');
             imageName = name + "-" + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(imageFile.FileName);
             var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "Images/Projects", imageName);

@@ -1,29 +1,27 @@
-﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{CA6CBCE7-2FDA-40BB-8518-BDC314B7AF26}|Default">
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+﻿<Properties StartupConfiguration="{CA6CBCE7-2FDA-40BB-8518-BDC314B7AF26}|Default" GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="migo-be/Controllers/EmployeeTimeLogController.cs">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="migo-be/Dto/AssessmentDto.cs">
     <Files>
-      <File FileName="migo-be/Dto/AssessmentDto.cs" Line="36" Column="22" />
-      <File FileName="migo-be/Controllers/EmployeeTimeLogController.cs" Line="35" Column="4" />
-      <File FileName="migo-be/Controllers/ProjectController.cs" Line="46" Column="1" />
-      <File FileName="migo-be/Controllers/AuthController.cs" Line="83" Column="52" />
-      <File FileName="migo-be/Migrations/20221205134846_addednullable.cs" Line="1" Column="1" />
+      <File FileName="migo-be/Models/Project.cs" Line="16" Column="1" />
+      <File FileName="migo-be/Controllers/EmployeeController.cs" Line="19" Column="1" />
+      <File FileName="migo-be/Controllers/ProjectController.cs" Line="36" Column="32" />
+      <File FileName="migo-be/Models/Benefits.cs" Line="25" Column="1" />
+      <File FileName="migo-be/Controllers/BenefitsController.cs" Line="34" Column="31" />
+      <File FileName="migo-be/Models/Training.cs" Line="15" Column="45" />
+      <File FileName="migo-be/Controllers/TrainingController.cs" Line="42" Column="76" />
+      <File FileName="migo-be/Dto/AssessmentDto.cs" Line="32" Column="71" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="migo-be" expanded="True">
             <Node name="migo-be" expanded="True">
-              <Node name="Dependencies" expanded="True">
-                <Node name="FrameworkReferences" expanded="True" />
-              </Node>
               <Node name="Controllers" expanded="True" />
-              <Node name="Data" expanded="True" />
               <Node name="Dto" expanded="True" />
               <Node name="Images" expanded="True" />
-              <Node name="Migrations" expanded="True" />
               <Node name="Models" expanded="True" />
             </Node>
           </Node>
@@ -35,6 +33,6 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.migo-be PreferredExecutionTarget="/Applications/Safari.app" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.migo-be PreferredExecutionTarget="/Applications/Safari.app" />
 </Properties>

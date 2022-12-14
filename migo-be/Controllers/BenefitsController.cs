@@ -39,7 +39,7 @@ namespace migo_be.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<List<Benefits>>> AddBenefits(Benefits benefit)
+        public async Task<ActionResult<List<Benefits>>> AddBenefits([FromForm] Benefits benefit)
         {
             benefit.ImageName =  await SaveImage(benefit.ImageFile, benefit.ImageSrc);
             _context.Benefits.Add(benefit);
