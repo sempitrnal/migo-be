@@ -32,7 +32,7 @@ namespace migo_be.Models
         public String? FunctionalComponentsRemark { get; set; }
         public Performance? Performance { get; set; }
         public String? PerformanceRemark { get; set; }
-
+        public String? TrainingAssessment { get; set; }
 
     }
 }

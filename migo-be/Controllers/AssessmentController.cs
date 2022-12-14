@@ -114,6 +114,21 @@ namespace migo_be.Controllers
             Console.WriteLine(functionalComponentsResult.PredictedLabel.ToString() + "\n");
             Console.WriteLine(performanceResult.PredictedLabel.ToString() + "\n");
 
+            //Load sample data
+            var trainingAssessment = new TrainingsML.ModelInput()
+            {
+                Quality = qualityResult.PredictedLabel.ToString(),
+                Efficiency = efficiencyResult.PredictedLabel.ToString(),
+                Agility = agilityResult.PredictedLabel.ToString(),
+                Innovation = innovationResult.PredictedLabel.ToString(),
+                Integrity = integrityResult.PredictedLabel.ToString(),
+                Functional_Components = functionalComponentsResult.PredictedLabel.ToString(),
+                Performance = performanceResult.PredictedLabel.ToString(),
+            };
+
+            //Load model and predict output
+            var trainingsAssessmentResult = TrainingsML.Predict(trainingAssessment);
+
             Assessment assessment = new Assessment();
             assessment.Employee = employee;
             assessment.Quality = request.Quality;
@@ -123,6 +138,7 @@ namespace migo_be.Controllers
             assessment.Integrity = request.Integrity;
             assessment.FunctionalComponents = request.FunctionalComponents;
             assessment.Performance = request.Performance;
+
             //Remarks
             assessment.AgilityRemark = agilityResult.PredictedLabel.ToString();
             assessment.EfficiencyRemark = efficiencyResult.PredictedLabel.ToString();
@@ -131,6 +147,8 @@ namespace migo_be.Controllers
             assessment.IntegrityRemark = integrityResult.PredictedLabel.ToString();
             assessment.PerformanceRemark = performanceResult.PredictedLabel.ToString();
             assessment.QualityRemark = qualityResult.PredictedLabel.ToString();
+
+            assessment.TrainingAssessment = trainingsAssessmentResult.PredictedLabel.ToString();
 
             _context.Assessments.Add(assessment);
             await _context.SaveChangesAsync();
@@ -143,10 +161,10 @@ namespace migo_be.Controllers
         {
             var ass = await _context.Assessments.Where(e => e.EmployeeId == empId)
                 .Include(c => c.Quality)
-               .Include(c => c.Innovation)
+                .Include(c => c.Innovation)
                 .Include(c => c.Agility)
                 .Include(c => c.Integrity)
-                 .Include(c => c.Efficiency)
+                .Include(c => c.Efficiency)
                 .Include(c => c.FunctionalComponents)
                 .Include(c => c.Performance).ToListAsync();
             return ass;

@@ -44,6 +44,7 @@ namespace migo_be.Controllers
                 .ToListAsync();
             return trainings;
         }
+
         [HttpPost]
         public async Task<ActionResult<List<Training>>> AddTraining([FromForm]Training training)
         {

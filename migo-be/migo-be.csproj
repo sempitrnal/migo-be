@@ -44,10 +44,11 @@
     <None Remove="Images\Trainings\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Images\" />
     <Folder Include="Images\Employees\" />
     <Folder Include="AssessmentTypes\" />
     <Folder Include="Dto\" />
+    <Folder Include="Images\NewFolder1\" />
+    <Folder Include="Images\NewFolder\NewFolder\" />
     <Folder Include="Images\Projects\" />
     <Folder Include="Images\Benefits\" />
     <Folder Include="Images\Trainings\" />
@@ -73,6 +74,18 @@
     </None>
     <None Include="_ViewStart.zip">
       <DependentUpon>_ViewStart.mbconfig</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup Label="TrainingsML">
+    <None Include="TrainingsML.consumption.cs">
+      <DependentUpon>TrainingsML.mbconfig</DependentUpon>
+    </None>
+    <None Include="TrainingsML.training.cs">
+      <DependentUpon>TrainingsML.mbconfig</DependentUpon>
+    </None>
+    <None Include="TrainingsML.zip">
+      <DependentUpon>TrainingsML.mbconfig</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

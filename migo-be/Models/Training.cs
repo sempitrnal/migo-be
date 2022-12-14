@@ -13,7 +13,7 @@ namespace migo_be.Models
         public String Name { get; set; }
         public String? Url { get; set; }
         public String Category { get; set; }
-        public String Aspects { get; set; }
+        public int Aspects { get; set; }
         public List<Employee>? Employees { get; set; }
         public string? ImageName { get; set; } = string.Empty;
         [NotMapped]

@@ -31,7 +31,7 @@ namespace Alliance_API.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("Duration")
+                    b.Property<double?>("Duration")
                         .HasColumnType("REAL");
 
                     b.Property<string>("ImageName")
@@ -299,6 +299,9 @@ namespace Alliance_API.Migrations
                     b.Property<string>("QualityRemark")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("TrainingAssessment")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AgilityId");
@@ -482,9 +485,8 @@ namespace Alliance_API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Aspects")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Aspects")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Category")
                         .IsRequired()
