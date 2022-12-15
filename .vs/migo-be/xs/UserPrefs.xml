@@ -1,23 +1,26 @@
-﻿<Properties StartupConfiguration="{CA6CBCE7-2FDA-40BB-8518-BDC314B7AF26}|Default" GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.ItemProperties.migo-be PreferredExecutionTarget="/Applications/Safari.app" />
+﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{CA6CBCE7-2FDA-40BB-8518-BDC314B7AF26}|Default">
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="migo-be/Program.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="migo-be/Controllers/BenefitsController.cs">
     <Files>
       <File FileName="migo-be/Models/Project.cs" Line="26" Column="50" />
       <File FileName="migo-be/Controllers/EmployeeController.cs" Line="130" Column="28" />
       <File FileName="migo-be/Controllers/ProjectController.cs" Line="30" Column="59" />
       <File FileName="migo-be/Models/Benefits.cs" Line="18" Column="23" />
       <File FileName="migo-be/Controllers/BenefitsController.cs" Line="42" Column="78" />
-      <File FileName="migo-be/Models/Training.cs" Line="15" Column="45" />
-      <File FileName="migo-be/Controllers/TrainingController.cs" Line="48" Column="78" />
+      <File FileName="migo-be/Models/Training.cs" Line="25" Column="6" />
       <File FileName="migo-be/Program.cs" Line="66" Column="4" />
+      <File FileName="migo-be/Models/Assessment.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="migo-be" expanded="True">
-            <Node name="migo-be" expanded="True" selected="True">
-              <Node name="Controllers" expanded="True" />
+            <Node name="migo-be" expanded="True">
+              <Node name="Controllers" expanded="True">
+                <Node name="BenefitsController.cs" selected="True" />
+              </Node>
               <Node name="Dto" expanded="True" />
               <Node name="Images" expanded="True">
                 <Node name="Employees" expanded="True" />
@@ -36,6 +39,5 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.migo-be PreferredExecutionTarget="/Applications/Google Chrome.app" />
 </Properties>

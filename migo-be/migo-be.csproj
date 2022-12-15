@@ -42,6 +42,8 @@
     <None Remove="Images\Projects\" />
     <None Remove="Images\Benefits\" />
     <None Remove="Images\Trainings\" />
+    <None Remove="sqlite.db-wal" />
+    <None Remove="sqlite.db-shm" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\Employees\" />

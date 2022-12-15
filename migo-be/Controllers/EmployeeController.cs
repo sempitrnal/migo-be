@@ -73,6 +73,10 @@ namespace Alliance_API.Controllers
             return employees;
         }
 
+
+
+
+
         [HttpPost("project")]
         public async Task<ActionResult<List<Project>>> AddEmployeeProject(AddEmployeeProjectDto request)
         {
@@ -92,11 +96,16 @@ namespace Alliance_API.Controllers
 
             return Ok(await _context.Employees.ToListAsync());
         }
+
+
+
+
         [HttpPost("training")]
         public async Task<ActionResult<List<Project>>> AddEmployeeTraining(AddEmployeeTrainingDto request)
         {
             var employee = await _context.Employees.Where(c => c.Id == request.EmployeeId)
-                .Include(c => c.AssignedProjects)
+     
+                .Include(c=>c.Trainings)
                 .FirstOrDefaultAsync();
             if (employee == null)
                 return NotFound();
@@ -105,20 +114,26 @@ namespace Alliance_API.Controllers
             if (employee == null)
                 return NotFound();
 
-            employee.Trainings?.Add(training);
+            employee.Trainings.Add(training);
 
             await _context.SaveChangesAsync();
-            var sampleData = new __ViewStart.ModelInput()
-            {
-                Score = 1.7F,
-                Column3 = @"",
-            };
 
-            //Load model and predict output
-            var result = __ViewStart.Predict(sampleData);
-            Console.WriteLine(result.PredictedLabel);
             return Ok(await _context.Employees.ToListAsync());
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         [HttpGet("{id}")]
         public async Task<ActionResult<Employee>> GetEmployee(int id)
         {   

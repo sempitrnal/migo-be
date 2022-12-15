@@ -149,7 +149,7 @@ namespace migo_be.Controllers
             assessment.QualityRemark = qualityResult.PredictedLabel.ToString();
 
             assessment.TrainingAssessment = trainingsAssessmentResult.PredictedLabel.ToString();
-            assessment.has
+        
             _context.Assessments.Add(assessment);
             await _context.SaveChangesAsync();
 
